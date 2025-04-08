@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Biodata Pemain</title>
+</head>
+<body>
+    <h2>Form Data Pemain</h2>
+    <form action="" id="formPemain">
+        <!-- namapemarin -->
+        <label for="nama">Nama Pemain : </label>
+        <input type="text" id="nama" name="nama" required><br>
+        <!-- umurpemarin -->
+        <label for="umur">Umur Pemain : </label>
+        <input type="number" id="umur" name= "umur" min="16" max="45"><br>
+        <!-- posisi pemain -->
+        <label for="posisi">Posisi Pemain :</label><br>
+        <input type="radio" id="Kiper"name="posisi" value="kiper"><label for="Kiper">Kiper</label>
+        <input type="radio" id="Bek"name="posisi" value="bek"><label for="Bek">Bek</label>
+        <input type="radio" id="Gelandang"name="posisi" value="gelandang"><label for="Gelandang">Gelandang</label>
+        <input type="radio" id="Penyerang"name="posisi" value="Penyerang"><label for="Penyerang">Penyerang</label><br>
+        <!-- kaki dominan -->
+         <label for="kaki-dominan">Kaki Dominan : </label>
+         <select name="kaki" id="kaki" required>
+            <option value="" disabled selected> Pilih Kaki Dominan</option>
+            <option value="kanan">kanan</option>
+            <option value="Kiri">Kiri</option>
+            <option value="Dua">Dua-duanya</option>
+         </select><br>
+         <!-- Keahlian Khusus -->
+         <label for="keahlian">Keahlian Khusus: </label><br>
+         <label for="free-kick"><input type="checkbox" class="keahlian" name="keahlian">free-kick</label>
+         <label for="Dribbling"><input type="checkbox" class="keahlian" name="keahlian">Dribbling</label>
+         <label for="Sprint"><input type="checkbox" class="keahlian" name="keahlian">Sprint</label>
+         <label for="Heading"><input type="checkbox" class="keahlian" name="keahlian">Heading</label><br>
+         <!-- deskripsi pemain -->
+          <label for="deskripsi">Deskripsi Pemain : </label>
+          <textarea name="deskripsi" id="deskripsi"></textarea><br>
+          <button type="submit">Kirim</button>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formPemain");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // Mencegah reload
+
+    // Ambil nilai input
+    const nama = document.getElementById("nama").value;
+    const umur = document.getElementById("umur").value;
+    const posisi = document.querySelector('input[name="posisi"]:checked')?.value;
+    const kaki = document.getElementById("kaki").value;
+    const deskripsi = document.getElementById("deskripsi").value;
+
+    // Ambil semua keahlian yang dicentang
+    const keahlianList = [];
+    document.querySelectorAll('input[name="keahlian"]:checked').forEach((item) => {
+      keahlianList.push(item.value);
+    });
+
+    // Validasi sederhana
+    if (!posisi) {
+      alert("Silakan pilih posisi pemain.");
+      return;
+    }
+
+    // Tampilkan di console
+    console.log("=== Data Pemain ===");
+    console.log("Nama:", nama);
+    console.log("Umur:", umur);
+    console.log("Posisi:", posisi);
+    console.log("Kaki Dominan:", kaki);
+    console.log("Keahlian Khusus:", keahlianList.join(", "));
+    console.log("Deskripsi:", deskripsi);
+
+    // Tambahan: kamu juga bisa menampilkan hasil di halaman, misalnya pakai innerHTML
+    alert("Data pemain berhasil dikirim! Cek console untuk detailnya.");
+  });
+});
+
+    </script>
+</body>
+</html>
